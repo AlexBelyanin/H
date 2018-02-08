@@ -1,0 +1,10 @@
+C:\Users\Alex\source\repos\H\obj\Debug\H.csprojResolveAssemblyReference.cache
+C:\Users\Alex\source\repos\H\obj\Debug\H.Form1.resources
+C:\Users\Alex\source\repos\H\obj\Debug\H.Properties.Resources.resources
+C:\Users\Alex\source\repos\H\obj\Debug\H.csproj.GenerateResource.Cache
+C:\Users\Alex\source\repos\H\obj\Debug\H.csproj.CoreCompileInputs.cache
+C:\Users\Alex\source\repos\H\bin\Debug\H.exe.config
+C:\Users\Alex\source\repos\H\bin\Debug\H.exe
+C:\Users\Alex\source\repos\H\bin\Debug\H.pdb
+C:\Users\Alex\source\repos\H\obj\Debug\H.exe
+C:\Users\Alex\source\repos\H\obj\Debug\H.pdb
