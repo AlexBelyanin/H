@@ -8,3 +8,12 @@ C:\Users\Alex\source\repos\H\bin\Debug\H.exe
 C:\Users\Alex\source\repos\H\bin\Debug\H.pdb
 C:\Users\Alex\source\repos\H\obj\Debug\H.exe
 C:\Users\Alex\source\repos\H\obj\Debug\H.pdb
+C:\Programming\Projects\GIT\Git\HoMM-B\H\bin\Debug\H.exe.config
+C:\Programming\Projects\GIT\Git\HoMM-B\H\obj\Debug\H.exe
+C:\Programming\Projects\GIT\Git\HoMM-B\H\obj\Debug\H.pdb
+C:\Programming\Projects\GIT\Git\HoMM-B\H\bin\Debug\H.exe
+C:\Programming\Projects\GIT\Git\HoMM-B\H\bin\Debug\H.pdb
+C:\Programming\Projects\GIT\Git\HoMM-B\H\obj\Debug\H.csprojResolveAssemblyReference.cache
+C:\Programming\Projects\GIT\Git\HoMM-B\H\obj\Debug\H.Form1.resources
+C:\Programming\Projects\GIT\Git\HoMM-B\H\obj\Debug\H.Properties.Resources.resources
+C:\Programming\Projects\GIT\Git\HoMM-B\H\obj\Debug\H.csproj.GenerateResource.Cache
