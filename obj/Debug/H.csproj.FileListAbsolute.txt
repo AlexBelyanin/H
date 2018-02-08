@@ -17,3 +17,12 @@ C:\Programming\Projects\GIT\Git\HoMM-B\H\obj\Debug\H.csprojResolveAssemblyRefere
 C:\Programming\Projects\GIT\Git\HoMM-B\H\obj\Debug\H.Form1.resources
 C:\Programming\Projects\GIT\Git\HoMM-B\H\obj\Debug\H.Properties.Resources.resources
 C:\Programming\Projects\GIT\Git\HoMM-B\H\obj\Debug\H.csproj.GenerateResource.Cache
+C:\Users\Vlad\Source\Repos\H\bin\Debug\H.exe.config
+C:\Users\Vlad\Source\Repos\H\obj\Debug\H.exe
+C:\Users\Vlad\Source\Repos\H\obj\Debug\H.pdb
+C:\Users\Vlad\Source\Repos\H\obj\Debug\H.csprojResolveAssemblyReference.cache
+C:\Users\Vlad\Source\Repos\H\obj\Debug\H.Form1.resources
+C:\Users\Vlad\Source\Repos\H\obj\Debug\H.Properties.Resources.resources
+C:\Users\Vlad\Source\Repos\H\obj\Debug\H.csproj.GenerateResource.Cache
+C:\Users\Vlad\Source\Repos\H\bin\Debug\H.exe
+C:\Users\Vlad\Source\Repos\H\bin\Debug\H.pdb

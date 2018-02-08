@@ -45,7 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\CL.cs" />
+    <Compile Include="Classes\GEM.cs" />
+    <Compile Include="Classes\TArmy.cs" />
     <Compile Include="Classes\TGUI.cs" />
+    <Compile Include="Classes\THero.cs" />
+    <Compile Include="Classes\TUnit.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,6 +93,39 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="bin\Debug\Pictures\Hsg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Pictures\Animation 0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Pictures\Animation 1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Pictures\Animation 2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Pictures\Animation 3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Pictures\BlackPixel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Pictures\BluePixel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Pictures\RedPixel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Pictures\Grass.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Pictures\Hero.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Pictures\Tree.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Pictures\Water.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

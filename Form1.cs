@@ -11,39 +11,64 @@ namespace H
         {
             InitializeComponent();
             state = State.MainMenu;
+            previous_state = State.Battle;
             Draw();
         }
 
         public enum State { MainMenu, Options, GameSetup, Game, Battle }
 
         public State state;
+        public State previous_state;
+        public GEM ge;
 
         public void Draw()
         {
             //deleting buttons
-            while(this.Controls.Count>1)
-                this.Controls.RemoveAt(1);
-
-            switch (state)
+            //while(this.Controls.Count>1)
+            //    this.Controls.RemoveAt(1);
+            if (previous_state != state)
             {
-                case(State.MainMenu):
-                    main_pb.Image = H.Properties.Resources.Hmm;
-                    Controls.Add(TGUI.GetButton("Start", 810, 12, Start_bt_Click));
-                    Controls.Add(TGUI.GetButton("Options", 810, 67, Options_bt_Click));
-                    Controls.Add(TGUI.GetButton("Exit", 810, 122, Exit_bt_Click));
-                    break;
-                case (State.Options):
-                    main_pb.Image = H.Properties.Resources.Hop;
-                    Controls.Add(TGUI.GetButton("Back", 810, 122, Backtomm_bt_Click));
-                    break;
-                case (State.Game):
-                    break;
-                case (State.GameSetup):
-                    main_pb.Image = H.Properties.Resources.Hsg;
-                    Controls.Add(TGUI.GetButton("Back", 810, 122, Backtomm_bt_Click));
-                    break;
-                case (State.Battle):
-                    break;
+                Controls.Clear();
+                previous_state = state;
+
+                switch (state)
+                {
+                    case (State.MainMenu):
+                        Controls.Add(main_pb);
+                        main_pb.Image = H.Properties.Resources.Hmm;
+                        Controls.Add(TGUI.GetButton("Start", 810, 12, Start_bt_Click));
+                        Controls.Add(TGUI.GetButton("Options", 810, 67, Options_bt_Click));
+                        Controls.Add(TGUI.GetButton("Exit", 810, 122, Exit_bt_Click));
+
+                        //Тестовая кнопка открывает экран, на котором будет происходить перемещение героя по глобальной карте
+                        //Такой же экран можно будет увидеть в сражениях- GEM одинаково применяется для отрисовки в обоих случах
+                        //При изменение обстановки (Смещении героя или отряда) соответствующий модуль передаёт GEM'у указания
+                        //  касательно того, как должно измениться изображение на экране
+                        Controls.Add(TGUI.GetButton("Test", 810, 177, Test_bt_Click));
+                        break;
+                    case (State.Options):
+                        Controls.Add(main_pb);
+                        main_pb.Image = H.Properties.Resources.Hop;
+                        Controls.Add(TGUI.GetButton("Back", 810, 122, Backtomm_bt_Click));
+                        break;
+                    case (State.Game):
+                        break;
+                    case (State.GameSetup):
+                        Controls.Add(main_pb);
+                        main_pb.Image = H.Properties.Resources.Hsg;
+                        Controls.Add(TGUI.GetButton("Back", 810, 122, Backtomm_bt_Click));
+                        break;
+                    case (State.Battle):
+                        main_pb.Image = null;
+                        foreach (GEM.TField field in ge.fields)
+                        {
+                            Controls.Add(field.pic);
+                            Controls.Add(field.backGround_pic);
+                            Controls.Add(field.lbl);
+                        }
+                        Controls.Add(TGUI.GetButton("Back", 100, 700, Backtomm_bt_Click));
+                        break;
+                }
             }
             main_pb.Invalidate();
         }
@@ -71,6 +96,12 @@ namespace H
             Draw();
         }
 
+        private void Test_bt_Click(object sender, EventArgs e)
+        {
+            state = State.Battle;
+            Draw();
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             Width = 1000;
@@ -82,6 +113,8 @@ namespace H
 
             Left = 0;
             Top = 0;
+
+            ge = new GEM();
         }
     }
 }
