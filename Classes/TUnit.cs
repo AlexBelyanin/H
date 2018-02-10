@@ -2,7 +2,7 @@
 
 namespace H.Classes
 {
-    class TUnit
+    public class TUnit
     {
         //Класс, хранящий "статическую" информацию о юните
 
@@ -16,7 +16,7 @@ namespace H.Classes
             GetUnit(name);
         }
 
-        public string FromIDtoName(int inp)
+        static public string FromIDtoName(int inp)
         {
             switch (inp)
             {

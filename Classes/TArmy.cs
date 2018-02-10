@@ -1,13 +1,13 @@
 ﻿namespace H.Classes
 {
-    class TArmy
+    public class TArmy
     {
         //Класс "Армии"- как в подчинении героя, так и без него
         public class TUnitInArmy
         {
-            bool exists = false;
-            TUnit type;
-            int amount;
+            public bool exists = false;
+            public TUnit type;
+            public int amount;
 
             public TUnitInArmy() { }
             public TUnitInArmy(int id, int number)
@@ -18,7 +18,7 @@
             }
         }
 
-        TUnitInArmy[] units = new TUnitInArmy[CL.MaxStacks];
+        public TUnitInArmy[] units = new TUnitInArmy[CL.MaxStacks];
 
         public TArmy()
         {
@@ -26,7 +26,7 @@
             {
                 units[i] = new TUnitInArmy();
             }
-            units[0] = new TUnitInArmy(1, 1);
+            units[0] = new TUnitInArmy(21, 1);
         }
     }
 }

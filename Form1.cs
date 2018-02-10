@@ -20,6 +20,7 @@ namespace H
         public State state;
         public State previous_state;
         public GEM ge;
+        public TBattleField bf;
 
         public void Draw()
         {
@@ -60,13 +61,29 @@ namespace H
                         break;
                     case (State.Battle):
                         main_pb.Image = null;
-                        foreach (GEM.TField field in ge.fields)
+                        bf.Ini(new TArmy(), new TArmy());
+                        for(int x = 0; x < CL.Map_Width; x++)
                         {
-                            Controls.Add(field.pic);
-                            Controls.Add(field.backGround_pic);
-                            Controls.Add(field.lbl);
+                            for (int y = 0; y < CL.Map_Height; y++)
+                            {
+                                Controls.Add(ge.fields[x, y].pic);
+                                Controls.Add(ge.fields[x, y].backGround_pic);
+                                Controls.Add(ge.fields[x, y].lbl);
+                                ge.fields[x, y].lbl.Text = "13";
+                                ge.fields[x, y].lbl.BringToFront();
+                            }
                         }
+                        ge.DrawBattleField(ref bf);
                         Controls.Add(TGUI.GetButton("Back", 100, 700, Backtomm_bt_Click));
+                        break;
+                }
+            }
+            else
+            {
+                switch(state)
+                {
+                    case (State.Battle):
+
                         break;
                 }
             }
@@ -115,6 +132,7 @@ namespace H
             Top = 0;
 
             ge = new GEM();
+            bf = new TBattleField();
         }
     }
 }

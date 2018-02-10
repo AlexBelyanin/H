@@ -48,6 +48,7 @@
     <Compile Include="Classes\CL.cs" />
     <Compile Include="Classes\GEM.cs" />
     <Compile Include="Classes\TArmy.cs" />
+    <Compile Include="Classes\TBattleField.cs" />
     <Compile Include="Classes\TGUI.cs" />
     <Compile Include="Classes\THero.cs" />
     <Compile Include="Classes\TUnit.cs" />
