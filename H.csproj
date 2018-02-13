@@ -47,6 +47,8 @@
   <ItemGroup>
     <Compile Include="Classes\CL.cs" />
     <Compile Include="Classes\GEM.cs" />
+    <Compile Include="Classes\Map.cs" />
+    <Compile Include="Classes\Stuff.cs" />
     <Compile Include="Classes\TArmy.cs" />
     <Compile Include="Classes\TGUI.cs" />
     <Compile Include="Classes\THero.cs" />
@@ -126,6 +128,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="bin\Debug\Pictures\Water.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\H_Cell_Grass.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\H_Cell_Dirt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\H_Cell_Black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\H_Resource_Gold.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\H_Resource_Stone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\H_Resource_Wood.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\H_Cell_White.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\H_Cell_Grass1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
