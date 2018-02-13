@@ -43,11 +43,11 @@ namespace H.Classes
         /// Также является причиной длительной загрузки
         /// </summary>
         /// <returns></returns>
-        static public Image[,,] ExtractUnitImages()
+        static public Image[,,,] ExtractUnitImages()
         {
             int x = 0;
             int y = 0;
-            Image[,,] res = new Image[5, 5, 4];
+            Image[,,,] res = new Image[5, 5, 4, 2];
 
             Bitmap cur_anim = Properties.Resources.Animation_0;
 
@@ -75,10 +75,15 @@ namespace H.Classes
                         }
                         Rectangle pos = new Rectangle(x, y, CL.Image_Width, CL.Image_Height);
 
-                        res[cx, cy, a] = (cur_anim.Clone(pos, cur_anim.PixelFormat));
+                        res[cx, cy, a, 0] = (cur_anim.Clone(pos, cur_anim.PixelFormat));
+                        res[cx, cy, a, 1] = (Image)res[cx, cy, a, 0].Clone();
                         if (x == 1022)
                         {
-                            res[cx, cy, a].RotateFlip(RotateFlipType.RotateNoneFlipX);
+                            res[cx, cy, a, 0].RotateFlip(RotateFlipType.RotateNoneFlipX);
+                        }
+                        else
+                        {
+                            res[cx, cy, a, 1].RotateFlip(RotateFlipType.RotateNoneFlipX);
                         }
                     }
                 }
