@@ -183,6 +183,16 @@ namespace H.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap H_Factory_Gold {
+            get {
+                object obj = ResourceManager.GetObject("H_Factory_Gold", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap H_Resource_Gold {
             get {
                 object obj = ResourceManager.GetObject("H_Resource_Gold", resourceCulture);

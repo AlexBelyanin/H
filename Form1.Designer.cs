@@ -47,12 +47,16 @@
             // 
             // DinamicLayer_pb
             // 
-            this.DinamicLayer_pb.BackColor = System.Drawing.Color.Transparent;
+            this.DinamicLayer_pb.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DinamicLayer_pb.BackColor = System.Drawing.Color.Black;
             this.DinamicLayer_pb.Location = new System.Drawing.Point(0, 0);
             this.DinamicLayer_pb.Name = "DinamicLayer_pb";
             this.DinamicLayer_pb.Size = new System.Drawing.Size(100, 50);
             this.DinamicLayer_pb.TabIndex = 3;
             this.DinamicLayer_pb.TabStop = false;
+            this.DinamicLayer_pb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.DinamicLayer_MouseClick);
             // 
             // main_pb
             // 
@@ -61,13 +65,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.main_pb.BackColor = System.Drawing.Color.White;
             this.main_pb.InitialImage = null;
-            this.main_pb.Location = new System.Drawing.Point(0, -1);
+            this.main_pb.Location = new System.Drawing.Point(0, 0);
             this.main_pb.Name = "main_pb";
             this.main_pb.Size = new System.Drawing.Size(482, 386);
             this.main_pb.TabIndex = 2;
             this.main_pb.TabStop = false;
-            this.main_pb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.main_pb_MouseClick);
-            this.main_pb.MouseMove += new System.Windows.Forms.MouseEventHandler(this.main_pb_MouseMove);
             // 
             // Form1
             // 
@@ -78,9 +80,11 @@
             this.Controls.Add(this.SuperDinamicLayer_pb);
             this.Controls.Add(this.DinamicLayer_pb);
             this.Controls.Add(this.main_pb);
+            this.KeyPreview = true;
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.SuperDinamicLayer_pb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DinamicLayer_pb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.main_pb)).EndInit();
