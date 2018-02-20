@@ -31,6 +31,9 @@
             this.SuperDinamicLayer_pb = new System.Windows.Forms.PictureBox();
             this.DinamicLayer_pb = new System.Windows.Forms.PictureBox();
             this.main_pb = new System.Windows.Forms.PictureBox();
+            this.EditorComboBox = new System.Windows.Forms.ComboBox();
+            this.EditorListBox = new System.Windows.Forms.ListBox();
+            this.MapNameTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.SuperDinamicLayer_pb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DinamicLayer_pb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.main_pb)).BeginInit();
@@ -53,7 +56,7 @@
             this.DinamicLayer_pb.BackColor = System.Drawing.Color.Black;
             this.DinamicLayer_pb.Location = new System.Drawing.Point(0, 0);
             this.DinamicLayer_pb.Name = "DinamicLayer_pb";
-            this.DinamicLayer_pb.Size = new System.Drawing.Size(100, 50);
+            this.DinamicLayer_pb.Size = new System.Drawing.Size(414, 50);
             this.DinamicLayer_pb.TabIndex = 3;
             this.DinamicLayer_pb.TabStop = false;
             this.DinamicLayer_pb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.DinamicLayer_MouseClick);
@@ -67,16 +70,45 @@
             this.main_pb.InitialImage = null;
             this.main_pb.Location = new System.Drawing.Point(0, 0);
             this.main_pb.Name = "main_pb";
-            this.main_pb.Size = new System.Drawing.Size(482, 386);
+            this.main_pb.Size = new System.Drawing.Size(796, 386);
             this.main_pb.TabIndex = 2;
             this.main_pb.TabStop = false;
+            // 
+            // EditorComboBox
+            // 
+            this.EditorComboBox.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.EditorComboBox.Location = new System.Drawing.Point(810, 51);
+            this.EditorComboBox.Name = "EditorComboBox";
+            this.EditorComboBox.Size = new System.Drawing.Size(161, 34);
+            this.EditorComboBox.TabIndex = 5;
+            this.EditorComboBox.SelectedIndexChanged += new System.EventHandler(this.EditorComboBox_SelectedIndexChanged);
+            // 
+            // EditorListBox
+            // 
+            this.EditorListBox.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.EditorListBox.ItemHeight = 26;
+            this.EditorListBox.Location = new System.Drawing.Point(810, 91);
+            this.EditorListBox.Name = "EditorListBox";
+            this.EditorListBox.Size = new System.Drawing.Size(161, 186);
+            this.EditorListBox.TabIndex = 6;
+            // 
+            // MapNameTextBox
+            // 
+            this.MapNameTextBox.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.MapNameTextBox.Location = new System.Drawing.Point(810, 11);
+            this.MapNameTextBox.Name = "MapNameTextBox";
+            this.MapNameTextBox.Size = new System.Drawing.Size(161, 34);
+            this.MapNameTextBox.TabIndex = 7;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.ClientSize = new System.Drawing.Size(661, 384);
+            this.ClientSize = new System.Drawing.Size(975, 384);
+            this.Controls.Add(this.MapNameTextBox);
+            this.Controls.Add(this.EditorListBox);
+            this.Controls.Add(this.EditorComboBox);
             this.Controls.Add(this.SuperDinamicLayer_pb);
             this.Controls.Add(this.DinamicLayer_pb);
             this.Controls.Add(this.main_pb);
@@ -89,6 +121,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.DinamicLayer_pb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.main_pb)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -96,6 +129,9 @@
         private System.Windows.Forms.PictureBox main_pb;
         private System.Windows.Forms.PictureBox DinamicLayer_pb;
         private System.Windows.Forms.PictureBox SuperDinamicLayer_pb;
+        private System.Windows.Forms.ComboBox EditorComboBox;
+        private System.Windows.Forms.ListBox EditorListBox;
+        private System.Windows.Forms.TextBox MapNameTextBox;
     }
 }
 

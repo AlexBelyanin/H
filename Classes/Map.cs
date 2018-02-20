@@ -1,13 +1,10 @@
 ﻿using System;
-using H.Classes;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace H.Classes
 {
+    [Serializable]
     class Cell
     {
         public bool[] ISvisible;
@@ -34,15 +31,17 @@ namespace H.Classes
         }
     }
 
+    [Serializable]
     class Map
     {
+        public string name;
         public int size;
         public Cell[,] Cells;
         public int turn;
         public Bitmap LayerStatic;
         public Bitmap LayerDinamic;
         public Bitmap LayerSuperDinamic;
-        //public List<Castle> Castles;
+        public List<Castle> Castles;
         public List<Factory> Factories;
         public List<THero> Heroes;
         public List<Resource> Resourses;
@@ -51,6 +50,7 @@ namespace H.Classes
 
         public Map()
         {
+            name = "Standart Map";
             size = 32;
             Cells = new Cell[32, 32];
             for (int i = 0; i < size; i++)
@@ -62,6 +62,7 @@ namespace H.Classes
             Resourses = new List<Resource>();
             Heroes = new List<THero>();
             Factories = new List<Factory>();
+            Castles = new List<Castle>();
 
             DrawMap();
             //Bitmap bitmap = new Bitmap(size * 32 + 64, size * 32 + 64);
@@ -72,22 +73,6 @@ namespace H.Classes
         {
             DrawDinamic(0,0);
             DrawStatic(0,0);
-            //LayerStatic = new Bitmap(H.Properties.Resources.H_Cell_Black, size * 32 + 64, size * 32 + 64);
-            //LayerDinamic = new Bitmap(H.Properties.Resources.H_Cell_White, size * 32 + 64, size * 32 + 64);
-            //LayerDinamic.MakeTransparent(LayerDinamic.GetPixel(1, 1));
-            //Graphics gS = Graphics.FromImage(LayerStatic), gD = Graphics.FromImage(LayerDinamic);
-            //for (int i = 0; i < size + 2; i++)
-            //    for (int j = 0; j < size + 2; j++)
-            //    {
-            //        if (i == 0 || j == 0 || i == size + 1 || j == size + 1) gS.DrawImage(H.Properties.Resources.H_Cell_Black, 32 * i, 32 * j);
-            //        else
-            //            gS.DrawImage(Cells[i - 1, j - 1].Ground, 32 * i, 32 * j);
-            //    }
-            //foreach(Resource res in Resourses)
-            //{
-            //    gD.DrawImage(res.Image, res.x * 32 + 32, res.y * 32 + 32);
-            //    Cells[res.x, res.y].ISusable = 1;
-            //}
         }
 
         public void DrawStatic(int mx, int my)
@@ -104,12 +89,10 @@ namespace H.Classes
             foreach(Factory f in Factories)
             {
                 gS.DrawImage(f.Image, f.x * 32 + 96 - mx, f.y * 32 + 96 - my);
-                Cells[f.x, f.y].ISusable = 3;
-                Cells[f.x - 1, f.y - 1].ISusable = -1;
-                Cells[f.x - 1, f.y].ISusable = -1;
-                Cells[f.x, f.y - 1].ISusable = -1;
-                Cells[f.x + 1, f.y].ISusable = -1;
-                Cells[f.x + 1, f.y - 1].ISusable = -1;
+            }
+            foreach (Castle f in Castles)
+            {
+                gS.DrawImage(f.Image, f.x * 32 + 64 - mx, f.y * 32 + 64 - my);
             }
         }
 
@@ -123,6 +106,37 @@ namespace H.Classes
                 gD.DrawImage(res.Image, res.x * 32 + 128 - mx, res.y * 32 + 128 - my);
                 Cells[res.x, res.y].ISusable = 1;
             }
+        }
+
+        public void AddFactory(int what, int x, int y)
+        {
+            Factories.Add(new Factory(what, x, y));
+            Cells[x, y].ISusable = 3;
+            Cells[x - 1, y - 1].ISusable = -1;
+            Cells[x - 1, y].ISusable = -1;
+            Cells[x, y - 1].ISusable = -1;
+            Cells[x + 1, y].ISusable = -1;
+            Cells[x + 1, y - 1].ISusable = -1;
+        }
+
+        public void AddCastle(int what,int x,int y)
+        {
+            Castles.Add(new Castle(what, x, y));
+            Cells[x, y].ISusable = 2;
+            Cells[x - 2, y - 2].ISusable = -1;
+            Cells[x - 2, y - 1].ISusable = -1;
+            Cells[x - 2, y].ISusable = -1;
+            Cells[x - 1, y - 2].ISusable = -1;
+            Cells[x - 1, y - 1].ISusable = -1;
+            Cells[x - 1, y].ISusable = -1;
+            Cells[x, y - 2].ISusable = -1;
+            Cells[x, y - 1].ISusable = -1;
+            Cells[x + 1, y - 2].ISusable = -1;
+            Cells[x + 1, y - 1].ISusable = -1;
+            Cells[x + 1, y].ISusable = -1;
+            Cells[x + 2, y - 2].ISusable = -1;
+            Cells[x + 2, y - 1].ISusable = -1;
+            Cells[x + 2, y].ISusable = -1;
         }
     }
 }

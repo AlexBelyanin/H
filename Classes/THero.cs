@@ -1,5 +1,8 @@
-﻿namespace H.Classes
+﻿using System;
+
+namespace H.Classes
 {
+    [Serializable]
     class THero
     {
         //Класс для героя
