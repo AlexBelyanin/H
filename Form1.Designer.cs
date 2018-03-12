@@ -34,9 +34,12 @@
             this.EditorComboBox = new System.Windows.Forms.ComboBox();
             this.EditorListBox = new System.Windows.Forms.ListBox();
             this.MapNameTextBox = new System.Windows.Forms.TextBox();
+            this.EditPanel_Castle = new System.Windows.Forms.Panel();
+            this.OwnerComboBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.SuperDinamicLayer_pb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DinamicLayer_pb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.main_pb)).BeginInit();
+            this.EditPanel_Castle.SuspendLayout();
             this.SuspendLayout();
             // 
             // SuperDinamicLayer_pb
@@ -100,12 +103,29 @@
             this.MapNameTextBox.Size = new System.Drawing.Size(161, 34);
             this.MapNameTextBox.TabIndex = 7;
             // 
+            // EditPanel_Castle
+            // 
+            this.EditPanel_Castle.Controls.Add(this.OwnerComboBox);
+            this.EditPanel_Castle.Location = new System.Drawing.Point(810, 286);
+            this.EditPanel_Castle.Name = "EditPanel_Castle";
+            this.EditPanel_Castle.Size = new System.Drawing.Size(161, 131);
+            this.EditPanel_Castle.TabIndex = 8;
+            // 
+            // OwnerComboBox
+            // 
+            this.OwnerComboBox.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.OwnerComboBox.Location = new System.Drawing.Point(0, 0);
+            this.OwnerComboBox.Name = "OwnerComboBox";
+            this.OwnerComboBox.Size = new System.Drawing.Size(161, 34);
+            this.OwnerComboBox.TabIndex = 6;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.HighlightText;
             this.ClientSize = new System.Drawing.Size(975, 384);
+            this.Controls.Add(this.EditPanel_Castle);
             this.Controls.Add(this.MapNameTextBox);
             this.Controls.Add(this.EditorListBox);
             this.Controls.Add(this.EditorComboBox);
@@ -116,10 +136,13 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.DinamicLayer_MouseClick);
             ((System.ComponentModel.ISupportInitialize)(this.SuperDinamicLayer_pb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DinamicLayer_pb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.main_pb)).EndInit();
+            this.EditPanel_Castle.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -132,6 +155,8 @@
         private System.Windows.Forms.ComboBox EditorComboBox;
         private System.Windows.Forms.ListBox EditorListBox;
         private System.Windows.Forms.TextBox MapNameTextBox;
+        private System.Windows.Forms.Panel EditPanel_Castle;
+        private System.Windows.Forms.ComboBox OwnerComboBox;
     }
 }
 

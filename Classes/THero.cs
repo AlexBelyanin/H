@@ -8,14 +8,15 @@ namespace H.Classes
         //Класс для героя
 
         public THero() { }
-        public THero(int x, int y)
+        public THero(int X, int Y)
         {
-            X = x;
-            Y = y;
+            x = X;
+            y = Y;
         }
 
-        public int X = 10;
-        public int Y = 10;
+        public int VisionR = 3;
+        public int x = 10;
+        public int y = 10;
         public TArmy army = new TArmy();
         public int MoveSpeed = 10;
     }

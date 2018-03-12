@@ -13,9 +13,13 @@ namespace H
         public Form1()
         {
             InitializeComponent();
+            SetStyle(ControlStyles.DoubleBuffer, true);
+            SetStyle(ControlStyles.UserPaint, true);
+            SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             state = State.MainMenu;
             previous_state = State.Battle;
             EditorComboBox.Items.AddRange(EditorsSelect);
+
             Draw();
         }
 
@@ -38,9 +42,6 @@ namespace H
 
         public void Draw()
         {
-            //deleting buttons
-            //while(this.Controls.Count>1)
-            //    this.Controls.RemoveAt(1);
             if (previous_state != state)
             {
                 Controls.Clear();
@@ -53,8 +54,8 @@ namespace H
                         main_pb.Image = H.Properties.Resources.Hmm;
                         Controls.Add(TGUI.GetButton("Start", 810, 12, Start_bt_Click));
                         Controls.Add(TGUI.GetButton("Options", 810, 67, Options_bt_Click));
-                        Controls.Add(TGUI.GetButton("Exit", 810, 122, Exit_bt_Click));
-                        Controls.Add(TGUI.GetButton("Map Editor", 810, 177, Editor_bt_Click));
+                        Controls.Add(TGUI.GetButton("Exit", 810, 177, Exit_bt_Click));
+                        Controls.Add(TGUI.GetButton("Map Editor", 810, 122, Editor_bt_Click));
 
                         //Тестовая кнопка открывает экран, на котором будет происходить перемещение героя по глобальной карте
                         //Такой же экран можно будет увидеть в сражениях- GEM одинаково применяется для отрисовки в обоих случах
@@ -68,27 +69,25 @@ namespace H
                         Controls.Add(TGUI.GetButton("Back", 810, 122, Backtomm_bt_Click));
                         break;
                     case (State.MapEditor):
-                        Controls.Add(DinamicLayer_pb);
                         map = new Map();
                         map.DrawMap();
-                        DinamicLayer_pb.BackgroundImage = map.LayerStatic;
-                        DinamicLayer_pb.Image = map.LayerDinamic;
-                        DinamicLayer_pb.BringToFront();
                         Controls.Add(EditorComboBox);
                         Controls.Add(EditorListBox);
+                        EditorListBox.Items.Clear();
                         Controls.Add(MapNameTextBox);
-                        Controls.Add(TGUI.GetButton("Back", 810, 397, Backtomm_bt_Click));
-                        Controls.Add(TGUI.GetButton("Save", 810, 342, SaveEdit_bt_Click));
+                        Controls.Add(EditPanel_Castle);
+                        Controls.Add(TGUI.GetButton("Back", 810, 505, Backtomm_bt_Click));
+                        Controls.Add(TGUI.GetButton("Save", 810, 450, SaveEdit_bt_Click));
                         MapNameTextBox.Text = map.name;
                         mapY = 0; mapX = 0;
+                        this.Invalidate();
                         break;
                     case (State.Game):
-                        Controls.Add(DinamicLayer_pb);
-                        Controls.Add(TGUI.GetButton("Exit", 810, 122, Exit_bt_Click));
+                        Controls.Add(TGUI.GetButton("Back", 810, 397, Backtomm_bt_Click));
                         map.DrawMap();
-                        DinamicLayer_pb.BackgroundImage = map.LayerStatic;
-                        DinamicLayer_pb.Image = map.LayerDinamic;
-                        DinamicLayer_pb.BringToFront();
+                        map.Players.Add(new Player(0, map.Castles[0], 32));
+
+                        this.Invalidate();
                         break;
                     case (State.GameSetup):
                         Controls.Add(main_pb);
@@ -96,6 +95,7 @@ namespace H
                         Controls.Add(TGUI.GetButton("Back", 810, 287, Backtomm_bt_Click));
                         Controls.Add(TGUI.GetButton("Load", 810, 342, Load_bt_Click));
                         Controls.Add(EditorListBox);
+                        EditorListBox.Items.Clear();
                         MapsDir = Directory.GetFiles(Directory.GetCurrentDirectory(), "*.hmap");
                         foreach(string s in MapsDir)
                         {
@@ -131,6 +131,7 @@ namespace H
                 }
             }
             main_pb.Invalidate();
+            this.Invalidate();
         }
 
         private void Go_bt_Click(object sender, EventArgs e)
@@ -161,6 +162,7 @@ namespace H
         private void Backtomm_bt_Click(object sender, EventArgs e)
         {
             state = State.MainMenu;
+            map = null;
             Draw();
         }
 
@@ -179,6 +181,26 @@ namespace H
         {
             state = State.MapEditor;
             Draw();
+        }
+
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            if (state == State.MapEditor)
+            {
+                Rectangle formRect = new Rectangle(0, 0, this.Width - 200, this.Height - 200), mapRect = new Rectangle(mapX, mapY, this.Width - 200, this.Height - 200);
+                e.Graphics.DrawImage(map.LayerStatic, formRect, mapRect, GraphicsUnit.Pixel);
+                foreach (Resource res in map.Resourses)
+                    if (this.Width - 200 > res.x * 32 + 128 - mapX && this.Height - 200 > res.y * 32 + 128) e.Graphics.DrawImage(res.Image, res.x * 32 + 128 - mapX, res.y * 32 + 128 - mapY);
+
+            }
+            else if (state == State.Game)
+            {
+                Rectangle formRect = new Rectangle(0, 0, this.Width - 200, this.Height - 200), mapRect = new Rectangle(mapX, mapY, this.Width - 200, this.Height - 200);
+                e.Graphics.DrawImage(map.LayerStatic, formRect, mapRect, GraphicsUnit.Pixel);
+                foreach (Resource res in map.Resourses)
+                    if (this.Width - 200 > res.x * 32 + 128 - mapX && this.Height - 200 > res.y * 32 + 128) e.Graphics.DrawImage(res.Image, res.x * 32 + 128 - mapX, res.y * 32 + 128 - mapY);
+                e.Graphics.DrawImage(map.Players[map.turn].SuperDinamicLayer, formRect, mapRect, GraphicsUnit.Pixel);
+            }
         }
 
         private void Start_bt_Click(object sender, EventArgs e)
@@ -202,11 +224,7 @@ namespace H
             main_pb.Height = 600;
             main_pb.SizeMode = PictureBoxSizeMode.StretchImage;
 
-            DinamicLayer_pb.Width = 800;
-            DinamicLayer_pb.Height = 600;
-
-            SuperDinamicLayer_pb.Width = 800;
-            SuperDinamicLayer_pb.Height = 600;
+            
 
             Left = 0;
             Top = 0;
@@ -222,46 +240,19 @@ namespace H
                 switch (e.KeyCode)
                 {
                     case (Keys.D):
-                        if (mapX < map.size * 32 - DinamicLayer_pb.Width + 240)
-                        {
-                            mapX += 8;
-                            map.DrawStatic(mapX, mapY);
-                            map.DrawDinamic(mapX, mapY);
-                            DinamicLayer_pb.Image = map.LayerDinamic;
-                            DinamicLayer_pb.BackgroundImage = map.LayerStatic;
-                        }
+                        if (mapX < map.size * 32 - this.Width + 440) mapX += 8;
                         break;
                     case (Keys.A):
-                        if (mapX > 0)
-                        {
-                            mapX -= 8;
-                            map.DrawStatic(mapX, mapY);
-                            map.DrawDinamic(mapX, mapY);
-                            DinamicLayer_pb.Image = map.LayerDinamic;
-                            DinamicLayer_pb.BackgroundImage = map.LayerStatic;
-                        }
+                        if (mapX > 0) mapX -= 8;
                         break;
                     case (Keys.S):
-                        if (mapY < map.size * 32 - DinamicLayer_pb.Height + 240)
-                        {
-                            mapY += 8;
-                            map.DrawStatic(mapX, mapY);
-                            map.DrawDinamic(mapX, mapY);
-                            DinamicLayer_pb.Image = map.LayerDinamic;
-                            DinamicLayer_pb.BackgroundImage = map.LayerStatic;
-                        }
+                        if (mapY < map.size * 32 - this.Height + 440) mapY += 8;
                         break;
                     case (Keys.W):
-                        if (mapY > 0)
-                        {
-                            mapY -= 8;
-                            map.DrawStatic(mapX, mapY);
-                            map.DrawDinamic(mapX, mapY);
-                            DinamicLayer_pb.Image = map.LayerDinamic;
-                            DinamicLayer_pb.BackgroundImage = map.LayerStatic;
-                        }
+                        if (mapY > 0) mapY -= 8;
                         break;
                 }
+                this.Invalidate();
             }
         }
 
@@ -302,19 +293,18 @@ namespace H
         {
             if (state == State.Game)
             {
-                if (e.X > 128 - mapX && e.Y > 128 - mapY && e.X < map.size * 32 + 128 - mapX && e.Y < map.size * 32 + 128 - mapY)
+                if (e.X > 128 - mapX && e.Y > 128 - mapY && e.X < map.size * 32 + 128 - mapX && e.Y < map.size * 32 + 128 - mapY && e.X < this.Width - 200 && e.Y < this.Height - 200)
                 {
                     if (map.Cells[(e.X + mapX) / 32 - 4, (e.Y + mapY) / 32 - 4].ISusable == 0)
                     {
                         map.Resourses.Add(new Resource(0, 10, (e.X + mapX) / 32 - 4, (e.Y + mapY) / 32 - 4));
-                        map.DrawDinamic(mapX, mapY);
-                        DinamicLayer_pb.Image = map.LayerDinamic;
+                        this.Invalidate();
                     }
                 }
             }
-            if(state == State.MapEditor)
+            if (state == State.MapEditor)
             {
-                if (e.X > 128 - mapX && e.Y > 128 - mapY && e.X < map.size * 32 + 128 - mapX && e.Y < map.size * 32 + 128 - mapY)
+                if (e.X > 128 - mapX && e.Y > 128 - mapY && e.X < map.size * 32 + 128 - mapX && e.Y < map.size * 32 + 128 - mapY && e.X < this.Width - 200 && e.Y < this.Height - 200 && EditorListBox.SelectedIndex > -1 && EditorComboBox.SelectedIndex > -1)
                 {
                     int X = (e.X + mapX) / 32 - 4, Y = (e.Y + mapY) / 32 - 4;
                     if (map.Cells[X, Y].ISusable == 0)
@@ -352,14 +342,27 @@ namespace H
                                 }
                                 break;
                             case (5):
+                                switch (EditorListBox.SelectedIndex)
+                                {
+                                    case (0):
+                                        switch (map.Cells[X, Y].ISusable)
+                                        {
+                                            case (-2):
+                                            case (2):
+
+                                                break;
+                                        }
+                                        break;
+                                    case (1):
+
+                                        break;
+                                }
                                 break;
                             default:
                                 break;
                         }
-                        map.DrawStatic(mapX, mapY);
-                        map.DrawDinamic(mapX, mapY);
-                        DinamicLayer_pb.Image = map.LayerDinamic;
-                        DinamicLayer_pb.BackgroundImage = map.LayerStatic;
+                        map.DrawStatic();
+                        this.Invalidate();
                     }
                 }
             }
